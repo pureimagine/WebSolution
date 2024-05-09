@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://unpkg.com/mdui@2/mdui.css">
+    <script src="https://unpkg.com/mdui@2/mdui.global.js"></script>
+    <style>
+        @import 'https://fonts.googleapis.com/css?family=Lily+Script+One';
+
+        body {
+            font-family: 'Lily Script One';
+        }
+
+        .card {
+            width: 300px;
+            height: 300px;
+            border-radius: 20%;
+        }
+
+        .content {
+            position: absolute;
+            width: 20%;
+            height: 50%;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            border-radius: 10%;
+            transition: transform 1s;
+            transform-style: preserve-3d;
+        }
+
+        .card:hover .content {
+            transform: rotateY( 180deg ) ;
+            transition: transform 0.5s;
+        }
+
+        .front, .back {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            background: white;
+            line-height: 10px;
+            color: rgb(31,114,189);
+            text-align: left;
+            font-size: 40px;
+            border-radius: 5px;
+            backface-visibility: hidden;
+        }
+
+        .back {
+            background: rgb(31,114,189);
+            color: white;
+            transform: rotateY( 180deg );
+        }
+        .cards-list {
+            z-index: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            padding-top: 5%;
+            border-radius: 10%;
+        }
+        .top{
+            text-align: center;
+            background-color:rgb(31,114,189) ;
+            color: white;
+            padding: 10px;
+            font-size: 20px;
+            border-radius:40px 40px 40px 40px;
+        }
+        .topSelect{
+            padding-left: 32%;
+            text-align: center;
+            width: 20%;
+        }
+        img{
+            width: 100%;
+            height: 100%;
+            border-radius: 10%;
+        }
+        .restart{
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            background: white;
+            line-height: 300px;
+            color: #03446A;
+            text-align: center;
+            font-size: 60px;
+            border-radius: 5px;
+            backface-visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+<div class="top">
+    <h1>stone-paper-scissors</h1>
+    <div class="topSelect">
+        <mdui-select id="selectvalue" value="1"  label="How many times" selectWinWay>
+            <mdui-menu-item value="1">1 time</mdui-menu-item>
+            <mdui-menu-item value="2">2 times</mdui-menu-item>
+            <mdui-menu-item value="3">3 times</mdui-menu-item>
+            <mdui-menu-item value="4">4 times</mdui-menu-item>
+            <mdui-menu-item value="5">5 times</mdui-menu-item>
+            <mdui-menu-item value="10">10 times</mdui-menu-item>
+        </mdui-select>
+    </div>
+</div>
+<div class="cards-list">
+    <div class="card" onclick="onclickBoard()" id="card1">
+        <div class="content">
+            <div class="front">
+                <div>
+                    <p>Board</p>
+                </div>
+                <div>
+                    <p id="HuPlayerScore">HuPlayerScore:0</p>
+                </div>
+                <div>
+                    <p id="ComputerScore">ComputerScore:0</p>
+                </div>
+                <div>
+                    <p id="SameScore">SameScore:0</p>
+                </div>
+            </div>
+            <div class="back restart">
+                Restart
+            </div>
+        </div>
+    </div>
+    <div class="card" onclick="Stone()">
+        <div class="content">
+            <div class="front">
+                <img src="giphy.gif" />
+            </div>
+            <div class="back restart">
+                Stone
+            </div>
+        </div>
+    </div>
+    <div class="card" onclick="Paper()">
+        <div class="content">
+            <div class="front">
+                <img src="giphy2.gif" />
+            </div>
+            <div class="back restart">
+                Paper
+            </div>
+        </div>
+    </div>
+    <div class="card" onclick="Scissors()">
+        <div class="content">
+            <div class="front">
+                <img src="giphy3.gif" />
+            </div>
+            <div class="back restart">
+                Scissors
+            </div>
+        </div>
+    </div>
+</div>
+<mdui-snackbar class="example-snackbar" id="firstDAM"></mdui-snackbar>
+<mdui-snackbar class="example-snackbar" id="secondDAM"></mdui-snackbar>
+<mdui-snackbar class="example-snackbar" id="thirdDAM"></mdui-snackbar>
+<script>
+    let userInput;
+    let computerInput;
+    let userscore=0;
+    let computerscore=0;
+    let same=0;
+    let time=1;
+    let turn=0;
+
+
+    function onclickBoard()
+    {
+        let dom=document.getElementById('card1');
+        userscore=0;
+        computerscore=0;
+        same=0;
+        turn=0;
+        let userDom = document.getElementById('HuPlayerScore');
+        userDom.innerText="HuPlayerScore:"+userscore
+        let computerDom = document.getElementById('ComputerScore');
+        computerDom.innerText="ComputerScore:"+computerscore
+        let SameDom = document.getElementById('SameScore');
+        SameDom.innerText="SameScore:"+same
+        alert("Restart game")
+    }
+    function getTimes()
+    {
+        time=document.getElementById("selectvalue").value;
+    }
+    function Stone() {
+        getTimes()
+        userInput=-1;
+        ComputerChooser()
+        Compare()
+        const snackbar = document.getElementById("firstDAM");
+        let computerInputCONT
+        if (computerInput==-1)
+            computerInputCONT="Stone"
+        if (computerInput==0)
+            computerInputCONT="Scissors"
+        if (computerInput==1)
+            computerInputCONT="Paper"
+
+        snackbar.innerText="Computer Chooser:"+computerInputCONT
+        snackbar.open = true;
+    }
+    function Paper() {
+        getTimes()
+        userInput=1;
+        ComputerChooser()
+        Compare()
+        const snackbar = document.getElementById("secondDAM");
+
+        let computerInputCONT
+        if (computerInput==-1)
+            computerInputCONT="Stone"
+        if (computerInput==0)
+            computerInputCONT="Scissors"
+        if (computerInput==1)
+            computerInputCONT="Paper"
+
+        snackbar.innerText="Computer Chooser:"+computerInputCONT
+        snackbar.open = true;
+    }
+    function Scissors() {
+        getTimes()
+        userInput=0;
+        ComputerChooser()
+        Compare()
+        const snackbar = document.getElementById("thirdDAM");
+
+        let computerInputCONT
+        if (computerInput==-1)
+            computerInputCONT="Stone"
+        if (computerInput==0)
+            computerInputCONT="Scissors"
+        if (computerInput==1)
+            computerInputCONT="Paper"
+
+        snackbar.innerText="Computer Chooser:"+computerInputCONT
+        snackbar.open = true;
+    }
+    function ComputerChooser() {
+        var num = Math.floor(Math.random() * 3) - 1;
+        computerInput=num;
+        console.log(num); // 输出-1、0或1
+        return num;
+    }
+    function Compare() {
+        console.log("userInput:"+userInput+"    computerInput:"+computerInput);
+        turn++;
+        if (userInput === computerInput) {
+            same++;
+        } else if ((userInput === -1 && computerInput === 0) || (userInput === 0 && computerInput === 1) || (userInput === 1 && computerInput === -1)) {
+            userscore++
+        } else {
+            computerscore++
+        }
+        updateScore()
+    }
+    function updateScore()
+    {
+        let userDom = document.getElementById('HuPlayerScore');
+        userDom.innerText="HuPlayerScore:"+userscore
+        let computerDom = document.getElementById('ComputerScore');
+        computerDom.innerText="ComputerScore:"+computerscore
+        let SameDom = document.getElementById('SameScore');
+        SameDom.innerText="SameScore:"+same
+        if (time==turn)
+        {
+            whoIsWin()
+        }
+    }
+    function whoIsWin()
+    {
+        if (userscore>computerscore)
+        {
+            alert("User win")
+            buttomDom.innerText="User win"
+        }
+
+        else if (userscore<computerscore)
+
+        {
+            alert("Computer win")
+            buttomDom.innerText="Computer win"
+        }
+        else
+        {
+            alert("No winner")
+            buttomDom.innerText="No winner"
+        }
+    }
+</script>
+
+</body>
+</html>

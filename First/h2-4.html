@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人主页</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;          
+        }
+        .background{
+            /* 初始化 取消内外边距 */
+            margin: 10px;
+            padding: 10px;
+            border-radius: 10px;
+            /* 100%窗口高度 */
+            height: 100vh;
+            /* 弹性布局 水平垂直居中 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* 渐变背景 */
+            /* background: linear-gradient(125deg,red,orange,yellow,green,blue,indigo,purple); */
+            /* 指定背景图像的大小 */
+            /* background: linear-gradient(125deg,);  */
+            background: linear-gradient(45deg, #fad0c4 ,#ff9a9e,  #ffd1ff ,#a18cd1 );
+            background-size: 500%;
+            /* 执行动画：动画名 时长 线性的 无限次播放 */
+            animation: bgAnimation 5s linear infinite;
+        }
+        .text{
+            color: #fff;
+            font-size: 30px;
+            /* 字间距 */
+            letter-spacing: 15px;
+        }
+
+        /* 定义动画 */
+        @keyframes bgAnimation {
+            0%{
+                background-position: 0% 50%;
+            }
+            50%{
+                background-position: 50% 75%;
+            }
+            100%{
+                background-position: 75% 0%;
+            }
+        }
+        .bigContent{
+            font-size: 10vh;
+            color: white;
+            text-shadow: 3px 3px;
+        }
+        #switch_down{
+            position: relative;
+            top: 40vh;
+            right: 40vh;
+            color: white;
+            font-size: 30px;
+        }
+        .city{
+            margin: 10px;
+            padding: 10px;
+            border-radius: 10px;
+            /* 100%窗口高度 */
+            height: 100vh;
+            /* 弹性布局 水平垂直居中 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url("https://i.postimg.cc/QtJtBCGh/backgroind.png") ;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            color: white;
+            font-size: 10vh;
+        }
+        .hobby_head{
+            margin: 10px;
+            padding: 10px;
+            border-radius: 10px;
+            /* 100%窗口高度 */
+            height: 20vh;
+            font-size: 10vh;
+            line-height: 20vh;
+            text-align: center;
+        }
+        .ride {
+            margin: 10px;
+            padding: 10px;
+            border-radius: 10px;
+            /* 100%窗口高度 */
+            height: 60vh;
+            /* 弹性布局 水平垂直居中 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-repeat: no-repeat;
+            background-image: url('https://racing.trekbikes.com/wp-content/uploads/2024/03/ZW-107708-1-scaled-1600x800-c-center.jpg?x62813');
+            background-size: 100% 100%;
+            color: white;
+            font-size: 10vh;
+            width: 47%;
+            display: inline-block;
+        }
+        .travel
+        {
+            margin: 10px;
+            padding: 10px;
+            border-radius: 10px;
+            /* 100%窗口高度 */
+            height: 60vh;
+            /* 弹性布局 水平垂直居中 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-repeat: no-repeat;
+            background-image: url('https://img4.uzaicdn.com/ba/sightGallery/%E6%AD%A6%E5%BD%93%E5%B1%B13035%E6%AD%A6%E5%BD%93%E5%B1%B162509+%E8%A7%86%E8%A7%89%E4%B8%AD%E5%9B%BD+RF+VCG2176b0daf30.jpg?imageView2/2/w/550/h/413/format/jpg/interlace/1');
+            background-size: 100% 100%;
+            color: white;
+            font-size: 10vh;
+            width: 47%;
+            display: inline-block;
+        }
+        .connect{
+            height: 10vh;
+            width: 20vh;
+            border-radius: 5vh;
+            background-color: #a18cd1;
+            font-size: 3vh;
+            line-height: 10vh;
+            text-align: center;
+            margin: 5vh auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="background">
+            <span class="bigContent">刘畅的个人网站</span>
+            <span id="switch_down">↓</span>
+    </div>
+    <div class="city">
+        <span>2001年,出生于四川广安</span>
+    </div>
+    <div class="hobby_head">
+        个人爱好
+    </div>
+    <div class="hobby">
+        <div class="ride">
+            公路车
+        </div>
+        <div class="travel">
+            旅游
+        </div>
+    </div>
+    <div class="hobby_head">
+        联系方式
+    </div>
+    <div class="connect">
+        电话：***
+    </div>
+</body>
+</html>
